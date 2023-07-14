@@ -61,7 +61,13 @@ echo form_open_multipart(base_url('admin/training/simpan_beli'));
       </thead>
       <tbody>
         <tr>
-          <td>Voucher Lelang</td>
+          <td>Voucher Training
+          <?php
+          if($tipe_voucher=='1')
+            echo "(6 bulan)";
+          elseif($tipe_voucher=='2')
+            echo "(12 bulan)";
+          ?></td>
           <td><div align="right"><?php
           if($tipe_voucher=='1')
             $harga_voucher = 6000000;
