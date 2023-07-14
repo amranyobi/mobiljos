@@ -125,7 +125,7 @@ $site = $this->konfigurasi_model->listing();
             <a href="tel:<?php echo $site->telepon ?>"><i class="fa fa-phone" aria-hidden="true"></i> <?php echo $site->telepon ?></a>
         <?php } ?> -->
             <a href="<?php echo base_url('daftar') ?>"><i class="fa fa-group" aria-hidden="true"></i> Join Member</a>
-            <a href="<?php echo base_url('kontak') ?>"><i class="fa fa-user" aria-hidden="true"></i> Login</a>
+            <a href="<?php echo base_url('login') ?>"><i class="fa fa-user" aria-hidden="true"></i> Login</a>
     </div>
     <!-- .donate-option -->
 <!-- </div> -->
