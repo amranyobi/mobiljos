@@ -58,7 +58,10 @@ class Lelang extends CI_Controller {
 		$id_user = $this->session->userdata('id_user');
 		$status_voucher = $this->lelang_model->cek_status($id_user);
 		$data_user = $this->lelang_model->data_user($id_user);
-		$data_konfirmasi = $this->lelang_model->data_konfirmasi($data_user['id']);
+		if(isset($data_user['id']))
+			$data_konfirmasi = $this->lelang_model->data_konfirmasi($data_user['id']);
+		else
+			$data_konfirmasi = '';
 		$data = array(	'title'			=> 'Voucher Lelang',
 						'isi'			=> 'admin/lelang/voucher_lelang',
 						'id_user'		=> $id_user,
