@@ -411,10 +411,16 @@ class Lelang extends CI_Controller {
 		$i 		= $this->input;
 		$tanggal = date("Y-m-d");
 		$no = $this->lelang_model->nomor_voucher_terakhir();
-		if($no['nomor']=='')
+		if(isset($no))
+		{
+			if($no['nomor']=='')
+				$no_awal = 0;
+			else
+				$no_awal = $no['nomor'];	
+		}else{
 			$no_awal = 0;
-		else
-			$no_awal = $no['nomor'];
+		}
+		
 		$no_terbaru = $no_awal + 1;
 		$data = array('id_user'=> $this->session->userdata('id_user'),
 			'tanggal_beli'		=> $tanggal,
