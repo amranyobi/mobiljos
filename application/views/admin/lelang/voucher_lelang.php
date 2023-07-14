@@ -59,8 +59,43 @@ echo form_open(base_url('admin/galeri/proses'));
           </div>
         </div>
         <?php
-        if($status_voucher['status']=='' || $status_voucher['status']=='2')
+        if(isset($status_voucher['status']))
         {
+          if($status_voucher['status']=='' || $status_voucher['status']=='2')
+          {
+            ?>
+            <div class="card-footer">
+              <div class="text-right"><font size="4">Rp. 5.000.000</font>&nbsp;&nbsp;
+                <a href="<?php echo base_url('admin/lelang/beli_voucher') ?>" class="btn btn-success">
+                  <i class="fa fa-money" style="color:white"></i>&nbsp;&nbsp;<font color="white">Beli Voucher</font>
+                </a>
+              </div>
+            </div>
+            <?php
+          }elseif($status_voucher['status']=='0')
+          {
+            ?>
+            <div class="card-footer">
+              <div class="text-right">
+                <a href="<?php echo base_url('admin/lelang/informasi_bayar') ?>" class="btn btn-success">
+                  <i class="fa fa-money" style="color:white"></i>&nbsp;&nbsp;<font color="white">Informasi Pembayaran</font>
+                </a>
+              </div>
+            </div>
+            <?php
+          }elseif($status_voucher['status']=='3')
+          {
+            ?>
+            <div class="card-footer"> 
+              <div class="text-right"><font size="2"><b>Tanggal Konfirmasi :</b> <?php echo date("d-m-Y",strtotime($data_konfirmasi['tanggal_konfirmasi'])) ?></font>
+                <a target="_blank" href="<?php echo base_url('assets/upload/image/'.$data_konfirmasi['alamat_file']) ?>" class="btn btn-success">
+                  <i class="fa fa-money" style="color:white"></i>&nbsp;&nbsp;<font color="white">Unduh Bukti Bayar</font>
+                </a>
+              </div>
+            </div>
+            <?php
+          }
+        }else{
           ?>
           <div class="card-footer">
             <div class="text-right"><font size="4">Rp. 5.000.000</font>&nbsp;&nbsp;
@@ -70,29 +105,8 @@ echo form_open(base_url('admin/galeri/proses'));
             </div>
           </div>
           <?php
-        }elseif($status_voucher['status']=='0')
-        {
-          ?>
-          <div class="card-footer">
-            <div class="text-right">
-              <a href="<?php echo base_url('admin/lelang/informasi_bayar') ?>" class="btn btn-success">
-                <i class="fa fa-money" style="color:white"></i>&nbsp;&nbsp;<font color="white">Informasi Pembayaran</font>
-              </a>
-            </div>
-          </div>
-          <?php
-        }elseif($status_voucher['status']=='3')
-        {
-          ?>
-          <div class="card-footer"> 
-            <div class="text-right"><font size="2"><b>Tanggal Konfirmasi :</b> <?php echo date("d-m-Y",strtotime($data_konfirmasi['tanggal_konfirmasi'])) ?></font>
-              <a target="_blank" href="<?php echo base_url('assets/upload/image/'.$data_konfirmasi['alamat_file']) ?>" class="btn btn-success">
-                <i class="fa fa-money" style="color:white"></i>&nbsp;&nbsp;<font color="white">Unduh Bukti Bayar</font>
-              </a>
-            </div>
-          </div>
-          <?php
         }
+       
       }else{
         ?>
         <div class="card-body pt-0">
