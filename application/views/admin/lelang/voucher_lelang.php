@@ -29,16 +29,23 @@ echo form_open(base_url('admin/galeri/proses'));
             <div class="col-7">
               <h2 class="lead"><b><font color="orange"> Voucher Lelang Anda Belum Aktif</font></b></h2>
               <?php
-              if($status_voucher['status']=='0')
+              if(isset($status_voucher['status']))
               {
-                ?>
-                <p class="text-muted text-sm">Lakukan pembayaran sesuai dengan instruksi. Klik Informasi Pembayaran untuk informasi lebih lanjut</p>
-                <?php
-              }elseif($status_voucher['status']=='3')
-              {
-                ?>
-                <p class="text-muted text-sm">Anda sudah melakukan pembayaran dan mengirim konfirmasi pembayaran, Tunggu hingga Admin Mobiljos melakukan pengecekan dan validasi pembayaran</p>
-                <?php
+                if($status_voucher['status']=='0')
+                {
+                  ?>
+                  <p class="text-muted text-sm">Lakukan pembayaran sesuai dengan instruksi. Klik Informasi Pembayaran untuk informasi lebih lanjut</p>
+                  <?php
+                }elseif($status_voucher['status']=='3')
+                {
+                  ?>
+                  <p class="text-muted text-sm">Anda sudah melakukan pembayaran dan mengirim konfirmasi pembayaran, Tunggu hingga Admin Mobiljos melakukan pengecekan dan validasi pembayaran</p>
+                  <?php
+                }else{
+                  ?>
+                  <p class="text-muted text-sm">Lakukan pembelian voucher lelang untuk dapat mengikuti lelang</p>
+                  <?php
+                }
               }else{
                 ?>
                 <p class="text-muted text-sm">Lakukan pembelian voucher lelang untuk dapat mengikuti lelang</p>
