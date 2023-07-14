@@ -98,6 +98,21 @@
               </li> -->
               
             </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-book"></i>
+              <p>TRAINING <i class="right fa fa-angle-left"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item"><a href="<?php echo base_url('admin/training') ?>" class="nav-link"><i class="fa fa-table nav-icon"></i><p>Data Training</p></a>
+              </li>
+              <li class="nav-item"><a href="<?php echo base_url('admin/training/konfirmasi_admin') ?>" class="nav-link"><i class="fa fa-money nav-icon"></i><p>Konfirmasi Voucher</p></a>
+              </li>
+              <li class="nav-item"><a href="<?php echo base_url('admin/training/tambah') ?>" class="nav-link"><i class="fa fa-plus nav-icon"></i><p>Tambah Training</p></a>
+              </li>
+            </ul>
           </li> 
           <?php } ?>
 
@@ -131,11 +146,11 @@
               
                 <ul class="nav nav-treeview">
                   <div style="margin-left:10px">
-                  <li class="nav-item"><a href="<?php echo base_url('admin/lelang') ?>" class="nav-link"><i class="fa fa-money nav-icon"></i><p>Voucher Training</p></a>
+                  <li class="nav-item"><a href="<?php echo base_url('admin/training/voucher_training') ?>" class="nav-link"><i class="fa fa-money nav-icon"></i><p>Voucher Training</p></a>
                   </li>
                   <!-- <li class="nav-item"><a href="<?php echo base_url('admin/galeri') ?>" class="nav-link"><i class="fa fa-table nav-icon"></i><p>Data Galeri &amp; Banner</p></a>
                   </li> -->
-                  <li class="nav-item"><a href="<?php echo base_url('admin/dasbor/lelang_berjalan') ?>" class="nav-link"><i class="nav-icon fa fa-group"></i><p>List Training</p></a>
+                  <li class="nav-item"><a href="<?php echo base_url('admin/training/data_training') ?>" class="nav-link"><i class="nav-icon fa fa-group"></i><p>List Training</p></a>
                   </li>
                   <!-- <li class="nav-item"><a href="<?php echo base_url('admin/kategori_galeri') ?>" class="nav-link"><i class="fa fa-tags nav-icon"></i><p>Kategori Galeri &amp; Banner</p></a>
                   </li> -->
