@@ -202,7 +202,7 @@ class Galeri_model extends CI_Model {
 
 	// Tambah
 	public function tambah($data) {
-		$this->db->insert('lelang',$data);
+		$this->db->insert('galeri',$data);
 	}
 
 	// Edit

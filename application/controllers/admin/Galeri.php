@@ -143,9 +143,12 @@ class Galeri extends CI_Controller {
 			array(	'required'	=> 'Isi galeri harus diisi'));
 
 		if($valid->run()) {
+			$fileExt = pathinfo($_FILES["gambar"]["name"], PATHINFO_EXTENSION);
+			$image = time().'15.'.$fileExt;
 			$config['upload_path']   = './assets/upload/image/';
       		$config['allowed_types'] = 'gif|jpg|png|svg|jpeg';
       		$config['max_size']      = '12000'; // KB  
+      		$config['file_name']   		= $image;
 			$this->load->library('upload', $config);
       		if(! $this->upload->do_upload('gambar')) {
 		// End validasi
@@ -162,7 +165,7 @@ class Galeri extends CI_Controller {
 			$upload_data        		= array('uploads' =>$this->upload->data());
 	        // Image Editor
 	        $config['image_library']  	= 'gd2';
-	        $config['source_image']   	= './assets/upload/image/'.$upload_data['uploads']['file_name']; 
+	        $config['source_image']   	= './assets/upload/image/'.$image; 
 	        $config['new_image']     	= './assets/upload/image/thumbs/';
 	        $config['create_thumb']   	= TRUE;
 	        $config['quality']       	= "100%";
@@ -182,7 +185,7 @@ class Galeri extends CI_Controller {
 	        				'judul_galeri'		=> $i->post('judul_galeri'),
 	        				'isi'				=> $i->post('isi'),
 	        				'jenis_galeri'		=> $i->post('jenis_galeri'),
-	        				'gambar'			=> $upload_data['uploads']['file_name'],
+	        				'gambar'			=> $image,
 	        				'website'			=> $i->post('website'),
 	        				'status_text'		=> $i->post('status_text'),
 	        				'urutan'		=> $i->post('urutan'),
@@ -193,7 +196,9 @@ class Galeri extends CI_Controller {
 	        				'warna'		=> $i->post('warna'),
 	        				'harga'		=> $i->post('harga')
 	        				);
+	        // var_dump($data);
 	        $this->galeri_model->tambah($data);
+	        // $this->db->error(); 
 	        $this->session->set_flashdata('sukses', 'Data telah ditambah');
 	        redirect(base_url('admin/galeri/mobil'),'refresh');
 		}}
