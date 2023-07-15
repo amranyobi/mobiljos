@@ -17,20 +17,45 @@ class Dasbor extends CI_Controller {
 		$this->load->model('staff_model');
 		$this->load->model('dasbor_model');
 		$this->load->model('lelang_model');
+		$this->load->model('galeri_model');
 	}
 
 	// Halaman dasbor
 	public function index()
 	{
-		$client 				= $this->client_model->listing();
-		$staff 					= $this->staff_model->listing();
+		if($this->session->userdata('akses_level')=="Admin")
+		{
+			$client 				= $this->client_model->listing();
+			$staff 					= $this->staff_model->listing();
 
-		$data = array(	'title'					=> 'Halaman Dasbor',
-						'client'				=> $client,
-						'staff'					=> $staff,
-						'isi'					=> 'admin/dasbor/list'
-					);
-		$this->load->view('admin/layout/wrapper', $data, FALSE);
+			$data = array(	'title'					=> 'Halaman Dasbor',
+							'client'				=> $client,
+							'staff'					=> $staff,
+							'isi'					=> 'admin/dasbor/list'
+						);
+			$this->load->view('admin/layout/wrapper', $data, FALSE);
+		}else{
+			$this->load->library('pagination');
+			$config['base_url'] 		= base_url().'admin/dasbor/list/';
+			$config['total_rows'] 		= count($this->galeri_model->total_galeri());
+			$config['use_page_numbers'] = TRUE;
+			$config['num_links'] 		= 5;
+			$config['uri_segment'] 		= 3;
+			$config['per_page'] 		= 12;
+			$config['first_url'] 		= base_url().'admin/dasbor/list/';
+			$this->pagination->initialize($config); 
+			$page 		= ($this->uri->segment(3)) ? ($this->uri->segment(3) - 1) * $config['per_page'] : 0;
+			$galeri 	= $this->galeri_model->galeri($config['per_page'], $page);
+			$site 		= $this->konfigurasi_model->listing();
+			$kategori 	= $this->galeri_model->kategori();
+			$data = array(	'title'					=> 'Galeri Mobil Bekas',
+							'galeri'				=> $galeri,
+							'isi'					=> 'admin/dasbor/list'
+						);
+			$this->load->view('admin/layout/wrapper', $data, FALSE);
+			
+		}
+		
 	}
 
 	public function lelang_berjalan()
