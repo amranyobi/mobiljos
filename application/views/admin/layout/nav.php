@@ -115,8 +115,8 @@
               </li>
               <li class="nav-item"><a href="<?php echo base_url('admin/training/konfirmasi_admin') ?>" class="nav-link"><i class="fa fa-money nav-icon"></i><p>Konfirmasi Voucher</p></a>
               </li>
-              <li class="nav-item"><a href="<?php echo base_url('admin/training/tambah') ?>" class="nav-link"><i class="fa fa-plus nav-icon"></i><p>Tambah Training</p></a>
-              </li>
+              <!-- <li class="nav-item"><a href="<?php echo base_url('admin/training/tambah') ?>" class="nav-link"><i class="fa fa-plus nav-icon"></i><p>Tambah Training</p></a>
+              </li> -->
             </ul>
           </li> 
           <?php } ?>
