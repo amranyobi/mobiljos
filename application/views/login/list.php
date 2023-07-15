@@ -56,17 +56,21 @@
           <input type="password" name="password" class="form-control" placeholder="Password">
         </div>
         <div class="row">
-          <div class="col-12">
+          <!-- <div class="col-12">
             <div class="checkbox icheck">
               <label>
                 <input type="checkbox"> Ingat Saya
               </label>
             </div>
-          </div>
+          </div> -->
           <!-- /.col -->
           <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
+            <button type="submit" class="btn btn-primary btn-block">Masuk</button>
           </div>
+          <div class="col-12" style="margin-top: 5px">
+            <a href="<?php echo base_url() ?>" class="btn btn-danger btn-block">Kembali Ke Depan</a>
+          </div>
+
           <!-- /.col -->
         </div>
       
