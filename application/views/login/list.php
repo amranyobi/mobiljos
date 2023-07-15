@@ -68,7 +68,7 @@
             <button type="submit" class="btn btn-primary btn-block">Masuk</button>
           </div>
           <div class="col-12" style="margin-top: 5px">
-            <a href="<?php echo base_url() ?>" class="btn btn-danger btn-block">Kembali Ke Depan</a>
+            <a href="<?php echo base_url() ?>" class="btn btn-danger btn-block">Kembali Ke Halaman Depan</a>
           </div>
 
           <!-- /.col -->
