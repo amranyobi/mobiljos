@@ -29,10 +29,10 @@ $nav_layanan                = $this->nav_model->nav_layanan();
         <ul class="nav navbar-nav">
             <!-- home -->
             <!-- <li><a href="<?php echo base_url() ?>" class="active">BERANDA</a></li> -->
-            <li><a href="<?php echo base_url() ?>" class="active">JUAL MOBIL</a></li>
-            <li><a href="<?php echo base_url() ?>" class="active">BELI MOBIL</a></li>
-            <li><a href="<?php echo base_url() ?>" class="active">SERVICE DAN SPAREPART</a></li>
-            <li><a href="<?php echo base_url() ?>" class="active">NEW CAR</a></li>
+            <li><a href="<?php echo base_url("jual/") ?>" class="active">JUAL MOBIL</a></li>
+            <li><a href="<?php echo base_url("galeri/") ?>" class="active">BELI MOBIL</a></li>
+            <li><a href="<?php echo base_url("service/") ?>" class="active">SERVICE DAN SPAREPART</a></li>
+            <li><a href="<?php echo base_url("newcar/") ?>" class="active">NEW CAR</a></li>
 
             <!-- berita -->
             <!-- <li><a href="<?php echo base_url('berita') ?>">BERITA</a></li> -->

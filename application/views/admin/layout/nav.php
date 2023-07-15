@@ -46,46 +46,51 @@
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-newspaper-o"></i>
-              <p>ARTIKEL<i class="right fa fa-angle-left"></i></p>
+              <p>Data Dashboard<i class="right fa fa-angle-left"></i></p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview" style="margin-left: 10px">
               <li class="nav-item"><a href="<?php echo base_url('admin/berita') ?>" class="nav-link"><i class="fa fa-table nav-icon"></i><p>Data Berita &amp; Profil</p></a>
               </li>
               <li class="nav-item"><a href="<?php echo base_url('admin/galeri/mobil') ?>" class="nav-link"><i class="fa fa-automobile nav-icon"></i><p>Data Mobil Bekas</p></a>
               </li>
-              <li class="nav-item"><a href="<?php echo base_url('admin/berita/tambah') ?>" class="nav-link"><i class="fa fa-plus nav-icon"></i><p>Tambah Berita &amp; Profil</p></a>
+              <li class="nav-item"><a href="<?php echo base_url('admin/galeri') ?>" class="nav-link"><i class="fa fa-image nav-icon"></i><p>Data Banner</p></a>
               </li>
-              <li class="nav-item"><a href="<?php echo base_url('admin/kategori') ?>" class="nav-link"><i class="fa fa-tags nav-icon"></i><p>Kategori Berita &amp; Profil</p></a>
+              <li class="nav-item"><a href="<?php echo base_url('admin/spare') ?>" class="nav-link"><i class="fa fa-gear nav-icon"></i><p>Data Bengkel</p></a>
               </li>
+              <li class="nav-item"><a href="<?php echo base_url('admin/newcar') ?>" class="nav-link"><i class="fa fa-tachometer nav-icon"></i><p>Data Newcar</p></a>
+              </li>
+              <!-- <li class="nav-item"><a href="<?php echo base_url('admin/berita/tambah') ?>" class="nav-link"><i class="fa fa-plus nav-icon"></i><p>Tambah Berita &amp; Profil</p></a>
+              </li> -->
+              <!-- <li class="nav-item"><a href="<?php echo base_url('admin/kategori') ?>" class="nav-link"><i class="fa fa-tags nav-icon"></i><p>Kategori Berita &amp; Profil</p></a>
+              </li> -->
               
             </ul>
           </li> 
 
           <!-- GALERI -->
-          <li class="nav-item has-treeview">
+          <!-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-image"></i>
               <p>BANNER <i class="right fa fa-angle-left"></i></p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item"><a href="<?php echo base_url('admin/galeri') ?>" class="nav-link"><i class="fa fa-table nav-icon"></i><p>Data Banner</p></a>
+              
+              <li class="nav-item"><a href="<?php echo base_url('admin/galeri') ?>" class="nav-link"><i class="fa fa-table nav-icon"></i><p>Data Galeri &amp; Banner</p></a>
               </li>
-              <!-- <li class="nav-item"><a href="<?php echo base_url('admin/galeri') ?>" class="nav-link"><i class="fa fa-table nav-icon"></i><p>Data Galeri &amp; Banner</p></a>
-              </li> -->
               <li class="nav-item"><a href="<?php echo base_url('admin/galeri/tambah') ?>" class="nav-link"><i class="fa fa-plus nav-icon"></i><p>Tambah Galeri &amp; Banner</p></a>
               </li>
               <li class="nav-item"><a href="<?php echo base_url('admin/kategori_galeri') ?>" class="nav-link"><i class="fa fa-tags nav-icon"></i><p>Kategori Galeri &amp; Banner</p></a>
               </li>
               
             </ul>
-          </li> 
+          </li>  -->
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-exchange"></i>
               <p>LELANG <i class="right fa fa-angle-left"></i></p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview" style="margin-left: 10px">
               <li class="nav-item"><a href="<?php echo base_url('admin/lelang') ?>" class="nav-link"><i class="fa fa-table nav-icon"></i><p>Data Lelang</p></a>
               </li>
               <li class="nav-item"><a href="<?php echo base_url('admin/lelang/konfirmasi_admin') ?>" class="nav-link"><i class="fa fa-money nav-icon"></i><p>Konfirmasi Voucher</p></a>
@@ -105,7 +110,7 @@
               <i class="nav-icon fa fa-book"></i>
               <p>TRAINING <i class="right fa fa-angle-left"></i></p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview" style="margin-left: 10px">
               <li class="nav-item"><a href="<?php echo base_url('admin/training') ?>" class="nav-link"><i class="fa fa-table nav-icon"></i><p>Data Training</p></a>
               </li>
               <li class="nav-item"><a href="<?php echo base_url('admin/training/konfirmasi_admin') ?>" class="nav-link"><i class="fa fa-money nav-icon"></i><p>Konfirmasi Voucher</p></a>
@@ -206,14 +211,14 @@
 
           <!-- CLIENT -->
           <?php if($this->session->userdata('akses_level')=="Admin") { ?>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="<?php echo base_url('admin/client') ?>" class="nav-link">
               <i class="nav-icon fa fa-group"></i>
               <p>
                 DATA CLIENT
               </p>
             </a>
-          </li>
+          </li> -->
           
           <!-- STAFF -->
           <li class="nav-item has-treeview">
@@ -221,13 +226,15 @@
               <i class="nav-icon fa fa-users"></i>
               <p>STAFF &amp; TEAM <i class="right fa fa-angle-left"></i></p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview" style="margin-left: 10px">
               <li class="nav-item"><a href="<?php echo base_url('admin/staff') ?>" class="nav-link"><i class="fa fa-table nav-icon"></i><p>Data Staff &amp; Team</p></a>
               </li>
               <li class="nav-item"><a href="<?php echo base_url('admin/staff/tambah') ?>" class="nav-link"><i class="fa fa-plus nav-icon"></i><p>Tambah Staff &amp; Team</p></a>
               </li>
               <li class="nav-item"><a href="<?php echo base_url('admin/bagian') ?>" class="nav-link"><i class="fa fa-tags nav-icon"></i><p>Bagian/Departemen</p></a>
               </li>
+              <!-- <li class="nav-item"><a href="<?php echo base_url('admin/staff') ?>" class="nav-link"><i class="fa fa-table nav-icon"></i><p>Data </p></a>
+              </li> -->
               
             </ul>
           </li> 
@@ -250,7 +257,7 @@
               <i class="nav-icon fa fa-wrench"></i>
               <p>KONFIGURASI <i class="right fa fa-angle-left"></i></p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview" style="margin-left: 10px">
               
               <li class="nav-item"><a href="<?php echo base_url('admin/konfigurasi') ?>" class="nav-link"><i class="fa fa-wrench nav-icon"></i><p>Konfigurasi Umum</p></a>
               </li>

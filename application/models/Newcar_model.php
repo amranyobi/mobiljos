@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Training_model extends CI_Model {
+class Newcar_model extends CI_Model {
 
 	public function __construct()
 	{
@@ -11,36 +11,23 @@ class Training_model extends CI_Model {
 
 	// Listing data
 	public function listing() {
-		$this->db->select('lelang.*, merk_mobil.nama_merk');
-		$this->db->from('lelang');
-		// Join dg 2 tabel
-		// $this->db->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
-		$this->db->join('merk_mobil','lelang.merk = merk_mobil.id_merk','LEFT');
-		// End join
-		// $this->db->where('jenis_galeri <>','Pop up');
-		$this->db->order_by('lelang.id_lelang','DESC');
-		$query = $this->db->get();
-		return $query->result();
-	}
-
-	public function listing_training() {
 		$this->db->select('*');
-		$this->db->from('training');
-		$this->db->order_by('judul_training','ASC');
+		$this->db->from('newcar');
+		$this->db->order_by('id_newcar','ASC');
 		$query = $this->db->get();
 		return $query->result();
 	}
 
 	public function konfirmasi_admin() {
-		$this->db->select('konfirmasi_bayar_training.*, users.nama, voucher_training.tanggal_mulai, voucher_training.tanggal_selesai, voucher_training.tipe_voucher, voucher_training.total_bayar, voucher_training.tanggal_beli');
-		$this->db->from('konfirmasi_bayar_training');
+		$this->db->select('konfirmasi_bayar.*, users.nama, voucher_lelang.total_bayar, voucher_lelang.tanggal_beli');
+		$this->db->from('konfirmasi_bayar');
 		// Join dg 2 tabel
 		// $this->db->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
-		$this->db->join('users','konfirmasi_bayar_training.id_user = users.id_user','LEFT');
-		$this->db->join('voucher_training','konfirmasi_bayar_training.id_voucher = voucher_training.id','LEFT');
+		$this->db->join('users','konfirmasi_bayar.id_user = users.id_user','LEFT');
+		$this->db->join('voucher_lelang','konfirmasi_bayar.id_voucher = voucher_lelang.id','LEFT');
 		// End join
 		// $this->db->where('jenis_galeri <>','Pop up');
-		$this->db->order_by('konfirmasi_bayar_training.id','DESC');
+		$this->db->order_by('konfirmasi_bayar.id','DESC');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -73,8 +60,8 @@ class Training_model extends CI_Model {
 	}
 
 	public function cek_status($id_user) {
-		$this->db->select('*');
-		$this->db->from('voucher_training');
+		$this->db->select('status');
+		$this->db->from('voucher_lelang');
 		$this->db->where('id_user',$id_user);
 		$this->db->order_by('id','DESC');
 		$query = $this->db->get();
@@ -83,7 +70,7 @@ class Training_model extends CI_Model {
 
 	public function data_user($id_user) {
 		$this->db->select('*');
-		$this->db->from('voucher_training');
+		$this->db->from('voucher_lelang');
 		$this->db->where('id_user',$id_user);
 		$this->db->order_by('id','DESC');
 		$query = $this->db->get();
@@ -92,7 +79,7 @@ class Training_model extends CI_Model {
 
 	public function data_konfirmasi($id_voucher) {
 		$this->db->select('*');
-		$this->db->from('konfirmasi_bayar_training');
+		$this->db->from('konfirmasi_bayar');
 		$this->db->where('id_voucher',$id_voucher);
 		$this->db->order_by('id','DESC');
 		$query = $this->db->get();
@@ -109,16 +96,8 @@ class Training_model extends CI_Model {
 
 	public function nomor_voucher_terakhir() {
 		$this->db->select('nomor');
-		$this->db->from('voucher_training');
+		$this->db->from('voucher_lelang');
 		$this->db->order_by('id','DESC');
-		$query = $this->db->get();
-		return $query->row_array();
-	}
-
-	public function data_satu($id_training) {
-		$this->db->select('*');
-		$this->db->from('training');
-		$this->db->where('id_training',$id_training);
 		$query = $this->db->get();
 		return $query->row_array();
 	}
@@ -222,17 +201,10 @@ class Training_model extends CI_Model {
 
 	// Listing data slider
 	public function galeri($limit,$start) {
-		$this->db->select('galeri.*, kategori_galeri.nama_kategori_galeri, users.nama, 
-						kategori_galeri.slug_kategori_galeri, kilometer.nama_kilometer, merk_mobil.nama_merk');
-		$this->db->from('galeri');
+		$this->db->select('*');
+		$this->db->from('newcar');
 		// Join dg 2 tabel
-		$this->db->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
-		$this->db->join('users','users.id_user = galeri.id_user','LEFT');
-		$this->db->join('merk_mobil','merk_mobil.id_merk = galeri.merk','LEFT');
-		$this->db->join('kilometer','kilometer.id_kilometer = galeri.kilometer','LEFT');
-		// End join
-		$this->db->where('jenis_galeri','Galeri');
-		$this->db->order_by('id_galeri','DESC');
+		$this->db->order_by('id_newcar','DESC');
 		$this->db->limit($limit,$start);
 		$query = $this->db->get();
 		return $query->result();
@@ -240,14 +212,9 @@ class Training_model extends CI_Model {
 
 	// Listing data slider
 	public function total_galeri() {
-		$this->db->select('galeri.*, kategori_galeri.nama_kategori_galeri, users.nama');
-		$this->db->from('galeri');
-		// Join dg 2 tabel
-		$this->db->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
-		$this->db->join('users','users.id_user = galeri.id_user','LEFT');
-		// End join
-		$this->db->where('jenis_galeri','Galeri');
-		$this->db->order_by('id_galeri','DESC');
+		$this->db->select('*');
+		$this->db->from('newcar');
+		$this->db->order_by('id_newcar','DESC');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -300,26 +267,26 @@ class Training_model extends CI_Model {
 	}
 
 	// Detail data
-	public function detail($id_galeri) {
+	public function detail($id_newcar) {
 		$this->db->select('*');
-		$this->db->from('galeri');
-		$this->db->where('id_galeri',$id_galeri);
-		$this->db->order_by('id_galeri','DESC');
+		$this->db->from('newcar');
+		$this->db->where('id_newcar',$id_newcar);
+		$this->db->order_by('id_newcar','DESC');
 		$query = $this->db->get();
 		return $query->row();
 	}
 
 	// Tambah
 	public function tambah($data) {
-		$this->db->insert('training',$data);
+		$this->db->insert('newcar',$data);
 	}
 
 	public function simpan_beli($data) {
-		$this->db->insert('voucher_training',$data);
+		$this->db->insert('voucher_lelang',$data);
 	}
 
 	public function simpan_konfirmasi($data) {
-		$this->db->insert('konfirmasi_bayar_training',$data);
+		$this->db->insert('konfirmasi_bayar',$data);
 	}
 
 	public function tambah_bid($data) {
@@ -328,25 +295,25 @@ class Training_model extends CI_Model {
 
 	// Edit
 	public function edit($data) {
-		$this->db->where('id_training',$data['id_training']);
-		$this->db->update('training',$data);
+		$this->db->where('id_galeri',$data['id_galeri']);
+		$this->db->update('galeri',$data);
 	}
 
 	public function ubah_status_voucher($data) {
 		$this->db->where('id',$data['id']);
-		$this->db->update('voucher_training',$data);
+		$this->db->update('voucher_lelang',$data);
 	}
 
 	public function konfirmasi_voucher($id_voucher) {
 		$this->db->where('id',$id_voucher);
 		$this->db->set('status',1);
-		$this->db->update('voucher_training');
+		$this->db->update('voucher_lelang');
 	}
 
 	public function konfirmasi_bayar($id) {
 		$this->db->where('id',$id);
 		$this->db->set('status',1);
-		$this->db->update('konfirmasi_bayar_training');
+		$this->db->update('konfirmasi_bayar');
 	}
 
 	// Edit
@@ -363,8 +330,8 @@ class Training_model extends CI_Model {
 
 	// Delete
 	public function delete($data) {
-		$this->db->where('id_galeri',$data['id_galeri']);
-		$this->db->delete('galeri',$data);
+		$this->db->where('id_newcar',$data['id_newcar']);
+		$this->db->delete('newcar',$data);
 	}
 }
 

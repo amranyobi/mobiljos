@@ -21,10 +21,10 @@ class Training extends CI_Controller {
 	// Halaman galeri
 	public function index()	{
 		// $galeri = $this->galeri_model->listing();
-		$galeri = $this->lelang_model->listing();
-		$data = array(	'title'			=> 'Data Lelang',
-						'galeri'		=> $galeri,
-						'isi'			=> 'admin/lelang/list');
+		$training = $this->training_model->listing_training();
+		$data = array(	'title'			=> 'Data Training',
+						'training'		=> $training,
+						'isi'			=> 'admin/training/list_admin');
 		$this->load->view('admin/layout/wrapper', $data, FALSE);		
 	}
 
@@ -150,263 +150,103 @@ class Training extends CI_Controller {
 	}
 
 	// Tambah galeri
-	public function tambah()	{
-		// $kategori_galeri = $this->kategori_galeri_model->listing();
-		$merk = $this->kategori_galeri_model->merk();
-		$kilometer = $this->kategori_galeri_model->kilometer();
-
+	public function tambah_training()	{
 		// Validasi
 		$valid = $this->form_validation;
 
-		$valid->set_rules('judul_lelang','Judul','required',
+		$valid->set_rules('judul_training','Judul','required',
 			array(	'required'	=> 'Judul harus diisi'));
-
-		$valid->set_rules('isi','Isi','required',
-			array(	'required'	=> 'Isi lelang harus diisi'));
-
 		if($valid->run()) {
 			$fileExt = pathinfo($_FILES["gambar1"]["name"], PATHINFO_EXTENSION);
-			$image = time().'1.'.$fileExt;
+			$image = time().'7.'.$fileExt;
 			$config['upload_path']   = './assets/upload/image/';
-      		$config['allowed_types'] = 'gif|jpg|png|svg|jpeg';
+      		$config['allowed_types'] = 'gif|jpg|png|pdf|jpeg|PDF';
       		$config['max_size']      = '12000'; // KB  
       		$config['file_name']   		= $image;
 			$this->load->library('upload', $config);
 
       		if(! $this->upload->do_upload('gambar1')) {
 				// End validasi
-				$data = array(	'title'				=> 'Tambah Lelang',
-								'kategori_galeri'	=> $kategori_galeri,
+				$data = array(	'title'				=> 'Tambah Training',
 								'error'    			=> $this->upload->display_errors(),
-								'isi'				=> 'admin/lelang/tambah');
+								'isi'				=> 'admin/training/tambah_training');
 				$this->load->view('admin/layout/wrapper', $data, FALSE);
 				// Masuk database
 			}else{
 				$upload_data        		= array('uploads' =>$this->upload->data());
-		        // Image Editor
-		        $config['image_library']  	= 'gd2';
-		        $config['source_image']   	= './assets/upload/image/'.$image; 
-		        $config['new_image']     	= './assets/upload/image/thumbs/';
-		        $config['create_thumb']   	= TRUE;
-		        $config['quality']       	= "100%";
-		        $config['maintain_ratio']   = TRUE;
-		        $config['width']       		= 500; // Pixel
-		        $config['height']       	= 500; // Pixel
-		        $config['x_axis']       	= 0;
-		        $config['y_axis']       	= 0;
-		        $config['thumb_marker']   	= '';
-		        $this->load->library('image_lib', $config);
-		        $this->image_lib->resize();
-
-		        //gambar 2
-		        $fileExt2 = pathinfo($_FILES["gambar2"]["name"], PATHINFO_EXTENSION);
-		        $image2 = time().'2.'.$fileExt2;
-		        $config2['upload_path']   = './assets/upload/image/';
-	      		$config2['allowed_types'] = 'gif|jpg|png|svg|jpeg';
-	      		$config2['max_size']      = '12000'; // KB  
-	      		$config2['file_name']   		= $image2;
-				$this->load->library('upload', $config2);
-				$this->upload->initialize($config2);
-				$this->upload->do_upload('gambar2');
-				$upload_data2        		= array('uploads2' =>$this->upload->data());
-		        // Image Editor
-		        $config2['image_library']  	= 'gd2';
-		        $config2['source_image']   	= './assets/upload/image/'.$image2; 
-		        $config2['new_image']     	= './assets/upload/image/thumbs/';
-		        $config2['create_thumb']   	= TRUE;
-		        $config2['quality']       	= "100%";
-		        $config2['maintain_ratio']   = TRUE;
-		        $config2['width']       		= 500; // Pixel
-		        $config2['height']       	= 500; // Pixel
-		        $config2['x_axis']       	= 0;
-		        $config2['y_axis']       	= 0;
-		        $config2['thumb_marker']   	= '';
-		        $this->load->library('image_lib', $config2);
-		        $this->image_lib->initialize($config2);
-		        $this->image_lib->resize();
-
-
-		        //gambar 3
-		        $fileExt3 = pathinfo($_FILES["gambar3"]["name"], PATHINFO_EXTENSION);
-		        $image3 = time().'3.'.$fileExt3;
-		        $config3['upload_path']   = './assets/upload/image/';
-	      		$config3['allowed_types'] = 'gif|jpg|png|svg|jpeg';
-	      		$config3['max_size']      = '12000'; // KB  
-	      		$config3['file_name']   		= $image3;
-				$this->load->library('upload', $config3);
-				$this->upload->initialize($config3);
-				$this->upload->do_upload('gambar3');
-				$upload_data3        		= array('uploads3' =>$this->upload->data());
-		        // Image Editor
-		        $config3['image_library']  	= 'gd2';
-		        $config3['source_image']   	= './assets/upload/image/'.$image3; 
-		        $config3['new_image']     	= './assets/upload/image/thumbs/';
-		        $config3['create_thumb']   	= TRUE;
-		        $config3['quality']       	= "100%";
-		        $config3['maintain_ratio']   = TRUE;
-		        $config3['width']       		= 500; // Pixel
-		        $config3['height']       	= 500; // Pixel
-		        $config3['x_axis']       	= 0;
-		        $config3['y_axis']       	= 0;
-		        $config3['thumb_marker']   	= '';
-		        $this->load->library('image_lib', $config3);
-		        $this->image_lib->initialize($config3);
-		        $this->image_lib->resize();
-
-		        //gambar 4
-		        $fileExt4 = pathinfo($_FILES["gambar4"]["name"], PATHINFO_EXTENSION);
-		        $image4 = time().'4.'.$fileExt3;
-		        $config4['upload_path']   = './assets/upload/image/';
-	      		$config4['allowed_types'] = 'gif|jpg|png|svg|jpeg';
-	      		$config4['max_size']      = '12000'; // KB  
-	      		$config4['file_name']   		= $image4;
-				$this->load->library('upload', $config4);
-				$this->upload->initialize($config4);
-				$this->upload->do_upload('gambar4');
-				$upload_data4        		= array('uploads4' =>$this->upload->data());
-		        // Image Editor
-		        $config4['image_library']  	= 'gd2';
-		        $config4['source_image']   	= './assets/upload/image/'.$image4; 
-		        $config4['new_image']     	= './assets/upload/image/thumbs/';
-		        $config4['create_thumb']   	= TRUE;
-		        $config4['quality']       	= "100%";
-		        $config4['maintain_ratio']   = TRUE;
-		        $config4['width']       		= 500; // Pixel
-		        $config4['height']       	= 500; // Pixel
-		        $config4['x_axis']       	= 0;
-		        $config4['y_axis']       	= 0;
-		        $config4['thumb_marker']   	= '';
-		        $this->load->library('image_lib', $config4);
-		        $this->image_lib->initialize($config4);
-		        $this->image_lib->resize();
-
 		        $i 		= $this->input;
 		        $data = array(	'id_user'			=> $this->session->userdata('id_user'),
-		        				'judul_lelang'		=> $i->post('judul_lelang'),
+		        				'judul_training'	=> $i->post('judul_training'),
 		        				'isi'				=> $i->post('isi'),
-		        				'gambar'			=> $image,
-		        				'gambar2'			=> $image2,
-		        				'gambar3'			=> $image3,
-		        				'gambar4'			=> $image4,
-		        				'website'			=> $i->post('website'),
-		        				'status_text'		=> $i->post('status_text'),
-		        				'transmisi'			=> $i->post('transmisi'),
-		        				'merk'				=> $i->post('merk'),
-		        				'kilometer'			=> $i->post('kilometer'),
-		        				'tahun'				=> $i->post('tahun'),
-		        				'warna'				=> $i->post('warna'),
-		        				'harga_awal'		=> $i->post('harga_awal'),
-		        				'urutan'		=> $i->post('urutan'),
-		        				'grade'		=> $i->post('grade'),
-		        				'tanggal_lelang'		=> $i->post('tanggal_lelang'),
-		        				'waktu_selesai'		=> $i->post('waktu_selesai')
+		        				'file'				=> $image
 		        				);
-		        $this->lelang_model->tambah($data);
+		        $this->training_model->tambah($data);
 		        $this->session->set_flashdata('sukses', 'Data telah ditambah');
-		        redirect(base_url('admin/lelang'),'refresh');
+		        redirect(base_url('admin/training'),'refresh');
 			}}
 		// End masuk database
-		$data = array(	'title'				=> 'Tambah Lelang',
-						'merk'	=> $merk,
-						'kilometer'	=> $kilometer,
-						'isi'				=> 'admin/lelang/tambah_mobil');
+		$data = array(	'title'				=> 'Tambah Training',
+						'isi'				=> 'admin/training/tambah_training');
 		$this->load->view('admin/layout/wrapper', $data, FALSE);		
 	}
 
 	// Edit galeri
-	public function edit($id_galeri)	{
-		$kategori_galeri 	= $this->kategori_galeri_model->listing();
-		$galeri 	= $this->galeri_model->detail($id_galeri); 
-
-		// Validasi
+	public function edit($id_training)	{
 		$valid = $this->form_validation;
 
-		$valid->set_rules('judul_galeri','Judul','required',
+		$valid->set_rules('judul_training','Judul','required',
 			array(	'required'	=> 'Judul harus diisi'));
-
-		$valid->set_rules('isi','Isi','required',
-			array(	'required'	=> 'Isi galeri harus diisi'));
-
+		$data_satu = $this->training_model->data_satu($id_training);
 		if($valid->run()) {
+			if($_FILES['gambar1']['name']=='')
+			{
+				$i 		= $this->input;
+				$data = array(	'id_user'			=> $this->session->userdata('id_user'),
+								'judul_training'	=> $i->post('judul_training'),
+								'isi'				=> $i->post('isi'),
+								'id_training'		=> $i->post('id_training'),
+								);
+				$this->training_model->edit($data);
+				$this->session->set_flashdata('sukses', 'Data telah Diubah');
+				redirect(base_url('admin/training'),'refresh');
+			}else{
+				$fileExt = pathinfo($_FILES["gambar1"]["name"], PATHINFO_EXTENSION);
+				$image = time().'7.'.$fileExt;
+				$config['upload_path']   = './assets/upload/image/';
+	      		$config['allowed_types'] = 'gif|jpg|png|pdf|jpeg|PDF';
+	      		$config['max_size']      = '12000'; // KB  
+	      		$config['file_name']   		= $image;
+				$this->load->library('upload', $config);
 
-			if(!empty($_FILES['gambar']['name'])) {
-
-			$config['upload_path']   = './assets/upload/image/';
-      		$config['allowed_types'] = 'gif|jpg|png|svg|jpeg';
-      		$config['max_size']      = '12000'; // KB  
-			$this->load->library('upload', $config);
-      		if(! $this->upload->do_upload('gambar')) {
-		// End validasi
-
-		$data = array(	'title'				=> 'Edit Galeri',
-						'kategori_galeri'	=> $kategori_galeri,
-						'galeri'			=> $galeri,
-						'error'    			=> $this->upload->display_errors(),
-						'isi'				=> 'admin/galeri/edit');
-		$this->load->view('admin/layout/wrapper', $data, FALSE);
-		// Masuk database
-		}else{
-			$upload_data        		= array('uploads' =>$this->upload->data());
-	        // Image Editor
-	        $config['image_library']  	= 'gd2';
-	        $config['source_image']   	= './assets/upload/image/'.$upload_data['uploads']['file_name']; 
-	        $config['new_image']     	= './assets/upload/image/thumbs/';
-	        $config['create_thumb']   	= TRUE;
-	        $config['quality']       	= "100%";
-	        $config['maintain_ratio']   = TRUE;
-	        $config['width']       		= 360; // Pixel
-	        $config['height']       	= 360; // Pixel
-	        $config['x_axis']       	= 0;
-	        $config['y_axis']       	= 0;
-	        $config['thumb_marker']   	= '';
-	        $this->load->library('image_lib', $config);
-	        $this->image_lib->resize();
-
-	        // Proses hapus gambar
-			if($galeri->gambar != "") {
-				unlink('./assets/upload/image/'.$galeri->gambar);
-				unlink('./assets/upload/image/thumbs/'.$galeri->gambar);
+	      		if(! $this->upload->do_upload('gambar1')) {
+					// End validasi
+					$data = array(	'title'				=> 'Ubah Data Training',
+									'error'    			=> $this->upload->display_errors(),
+									'data_satu'			=> $data_satu,
+									'id_training'		=> $id_training,
+									'isi'				=> 'admin/training/tambah_training');
+					$this->load->view('admin/layout/wrapper', $data, FALSE);
+					// Masuk database
+				}else{
+					$upload_data        		= array('uploads' =>$this->upload->data());
+			        $i 		= $this->input;
+			        $data = array(	'id_user'			=> $this->session->userdata('id_user'),
+			        				'judul_training'	=> $i->post('judul_training'),
+			        				'isi'				=> $i->post('isi'),
+									'id_training'		=> $i->post('id_training'),
+			        				'file'				=> $image
+			        				);
+			        $this->training_model->edit($data);
+			        $this->session->set_flashdata('sukses', 'Data telah Diubah');
+			        redirect(base_url('admin/training'),'refresh');
+				}
 			}
-			// End hapus gambar
-
-	        $i 		= $this->input;
-
-	        $data = array(	'id_galeri'			=> $id_galeri,
-	        				'id_kategori_galeri'=> $i->post('id_kategori_galeri'),
-	        				'id_user'			=> $this->session->userdata('id_user'),
-	        				'judul_galeri'		=> $i->post('judul_galeri'),
-	        				'isi'				=> $i->post('isi'),
-	        				'jenis_galeri'		=> $i->post('jenis_galeri'),
-	        				'gambar'			=> $upload_data['uploads']['file_name'],
-	        				'website'			=> $i->post('website'),
-	        				'status_text'		=> $i->post('status_text'),
-	        				'urutan'		=> $i->post('urutan')
-	        				);
-	        $this->galeri_model->edit($data);
-	        $this->session->set_flashdata('sukses', 'Data telah diedit');
-	        redirect(base_url('admin/galeri'),'refresh');
-		}}else{
-			$i 		= $this->input;
-
-	        $data = array(	'id_galeri'			=> $id_galeri,
-	        				'id_kategori_galeri'=> $i->post('id_kategori_galeri'),
-	        				'id_user'			=> $this->session->userdata('id_user'),
-	        				'judul_galeri'		=> $i->post('judul_galeri'),
-	        				'isi'				=> $i->post('isi'),
-	        				'jenis_galeri'		=> $i->post('jenis_galeri'),
-	        				'website'			=> $i->post('website'),
-	        				'status_text'		=> $i->post('status_text'),
-	        				'urutan'		=> $i->post('urutan')
-	        				);
-	        $this->galeri_model->edit($data);
-	        $this->session->set_flashdata('sukses', 'Data telah diedit');
-	        redirect(base_url('admin/galeri'),'refresh');
-		}}
-		// End masuk database
-		$data = array(	'title'				=> 'Edit Galeri',
-						'kategori_galeri'	=> $kategori_galeri,
-						'galeri'			=> $galeri,
-						'isi'				=> 'admin/galeri/edit');
+		}
+		
+		$data = array(	'title'				=> 'Ubah Data Training',
+						'data_satu'			=> $data_satu,
+						'id_training'		=> $id_training,
+						'isi'				=> 'admin/training/tambah_training');
 		$this->load->view('admin/layout/wrapper', $data, FALSE);		
 	}
 
