@@ -6,6 +6,16 @@ $nav_download               = $this->nav_model->nav_download();
 $nav_berita                 = $this->nav_model->nav_berita();
 $nav_agenda                 = $this->nav_model->nav_agenda();
 $nav_layanan                = $this->nav_model->nav_layanan();
+
+function isMobileDev(){
+    if(!empty($_SERVER['HTTP_USER_AGENT'])){
+       $user_ag = $_SERVER['HTTP_USER_AGENT'];
+       if(preg_match('/(Mobile|Android|Tablet|GoBrowser|[0-9]x[0-9]*|uZardWeb\/|Mini|Doris\/|Skyfire\/|iPhone|Fennec\/|Maemo|Iris\/|CLDC\-|Mobi\/)/uis',$user_ag)){
+          return true;
+       };
+    };
+    return false;
+}
 ?>
 <!-- Start Menu -->
 <div class="bg-main-menu menu-scroll">
@@ -33,7 +43,14 @@ $nav_layanan                = $this->nav_model->nav_layanan();
             <li><a href="<?php echo base_url("galeri/") ?>" class="active">BELI MOBIL</a></li>
             <li><a href="<?php echo base_url("service/") ?>" class="active">SERVICE DAN SPAREPART</a></li>
             <li><a href="<?php echo base_url("newcar/") ?>" class="active">NEW CAR</a></li>
-
+            <?php
+            if(isMobileDev()){
+                ?>
+                <li><a href="<?php echo base_url("daftar/") ?>" class="active">JOIN MEMBER</a></li>
+                <li><a href="<?php echo base_url("login/") ?>" class="active">LOGIN</a></li>
+                <?php
+            }
+            ?>
             <!-- berita -->
             <!-- <li><a href="<?php echo base_url('berita') ?>">BERITA</a></li> -->
             <!-- <li class="dropdown">

@@ -87,7 +87,7 @@
                 
             </div>
 
-            <div align="center"><a href="" class="btn btn-default">BELI MOBIL IMPIAN</a></div>
+            <div align="center"><a href="<?php echo base_url("galeri/") ?>" class="btn btn-default">BELI MOBIL IMPIAN</a></div>
             <!-- .row -->
         </div>
         <!-- .our-services-option -->
@@ -148,7 +148,7 @@
                 
             </div>
 
-            <div align="center"><a href="" class="btn btn-default">JUAL MOBIL ANDA</a></div>
+            <div align="center"><a href="<?php echo base_url("jual/") ?>" class="btn btn-default">JUAL MOBIL ANDA</a></div>
             <!-- .row -->
         </div>
     </div>
