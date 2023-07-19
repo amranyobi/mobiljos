@@ -15,6 +15,7 @@ class Galeri extends CI_Controller {
 	public function index()	{
 		$site 		= $this->konfigurasi_model->listing();
 		$kategori 	= $this->galeri_model->kategori();
+		$merk = $this->kategori_galeri_model->merk();
 
 		// Galeri dan paginasi
 		$this->load->library('pagination');
@@ -36,8 +37,45 @@ class Galeri extends CI_Controller {
 						'pagin' 	=> $this->pagination->create_links(),
 						'galeri'	=> $galeri,
 						'kategori'	=> $kategori,
+						'merk'		=> $merk,
 						'isi'		=> 'galeri/list');
 		$this->load->view('layout/wrapper', $data, FALSE);
+	}
+
+	public function tambah_cari() {
+		   // Nambah agenda, check validasi
+			$tanggal = date("Y-m-d");
+	        $i 		= $this->input;
+	        $data = array(
+	        	'nama'		=> $i->post('nama'),
+	        	'alamat'	=> $i->post('alamat'),
+	        	'handphone'		=> $i->post('handphone'),
+	        	'merk'		=> $i->post('merk'),
+	        	'deskripsi'		=> $i->post('deskripsi'),
+	        	'tanggal'		=> $tanggal
+	        );
+	        $simpan = $this->galeri_model->tambah_cari($data);
+	        if($simpan)
+	        {
+	        	$this->session->set_flashdata('sukses','Cari Mobil Berhasil');
+	        	redirect(base_url().'galeri/berhasil/1');
+	        }else{
+				// echo "test";
+	        	$this->session->set_flashdata('sukses','Cari Mobil Berhasil');
+	        	redirect(base_url().'galeri/berhasil/1');
+	        }
+	}
+
+	public function berhasil($tipe){
+		$site 			= $this->konfigurasi_model->listing();
+		$data = array(	'title'		=> 'Pesan Mobil '.$site->namaweb.' | '.$site->tagline,
+						'deskripsi'	=> 'Pesan Mobil '.$site->namaweb.' | '.$site->tagline.' '.$site->tentang,
+						'keywords'	=> 'Pesan Mobil '.$site->namaweb.' | '.$site->tagline.' '.$site->keywords,
+						'site'		=> $site,
+						'tipe'		=> $tipe,
+						'isi'		=> 'galeri/berhasil');
+		$this->load->view('layout/wrapper', $data, FALSE);
+
 	}
 
 	// Category

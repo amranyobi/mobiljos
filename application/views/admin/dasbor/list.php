@@ -1,155 +1,123 @@
 <!-- Info boxes -->
 <?php if($this->session->userdata('akses_level')=="User") { ?>
-  <style type="text/css">
-    /*
-    *
-    * ==========================================
-    * FOR DEMO PURPOSE
-    * ==========================================
-    *
-    */
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Dashboard</title>
 
-    body {
-      background: #f4f4f4;
-    }
+     <!-- Slick CSS -->
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
-    .banner {
-      background: #a770ef;
-      background: -webkit-linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
-      background: linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
-    }
+     <!-- Our CSS -->
+     <style>
+        /* body {
+             font-family: Verdana, Geneva, Tahoma, sans-serif;
+             background: #dedede;
+         }*/
 
-    div.blueTable {
-      border: 1px solid #1C6EA4;
-      background-color: #EEEEEE;
-      width: 100%;
-      text-align: left;
-      border-collapse: collapse;
-    }
-    .divTable.blueTable .divTableCell, .divTable.blueTable .divTableHead {
-      border: 1px solid #AAAAAA;
-      padding: 3px 2px;
-    }
-    .divTable.blueTable .divTableBody .divTableCell {
-      font-size: 13px;
-    }
-    .divTable.blueTable .divTableRow:nth-child(even) {
-      background: #D0E4F5;
-    }
-    .divTable.blueTable .divTableHeading {
-      background: #1C6EA4;
-      background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-      background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-      background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-      border-bottom: 2px solid #444444;
-    }
-    .divTable.blueTable .divTableHeading .divTableHead {
-      font-size: 15px;
-      font-weight: bold;
-      color: #FFFFFF;
-      border-left: 2px solid #D0E4F5;
-    }
-    .divTable.blueTable .divTableHeading .divTableHead:first-child {
-      border-left: none;
-    }
+         .container {
+             max-width: 900px;
+             padding: 15px;
+             background-color: #fff;
+             margin-left: auto;
+             margin-right: auto;
+         }
 
-    .blueTable .tableFootStyle {
-      font-size: 14px;
-    }
-    .blueTable .tableFootStyle .links {
-         text-align: right;
-    }
-    .blueTable .tableFootStyle .links a{
-      display: inline-block;
-      background: #1C6EA4;
-      color: #FFFFFF;
-      padding: 2px 8px;
-      border-radius: 5px;
-    }
-    .blueTable.outerTableFooter {
-      border-top: none;
-    }
-    .blueTable.outerTableFooter .tableFootStyle {
-      padding: 3px 5px; 
-    }
-    /* DivTable.com */
-    .divTable{ display: table; }
-    .divTableRow { display: table-row; }
-    .divTableHeading { display: table-header-group;}
-    .divTableCell, .divTableHead { display: table-cell;}
-    .divTableHeading { display: table-header-group;}
-    .divTableFoot { display: table-footer-group;}
-    .divTableBody { display: table-row-group;}
-  </style>
-  <script type="text/javascript">
-    
-  </script>
-  <div class="container-fluid">
-    <div class="px-lg-5">
+         .slider .slick-slide {
+             border: solid 1px #000;
+         }
 
-      <!-- For demo purpose -->
-      <!-- <div class="row py-5">
-        <div class="col-lg-12 mx-auto">
-          <div class="text-white p-5 shadow-sm rounded banner">
-            <h1 class="display-4">Galeri Mobil Bekas</h1>
-          </div>
-        </div>
-      </div> -->
-      <!-- End -->
+         .slider .slick-slide img {
+             width: 100%;
+         }
 
-      <div class="row">
-        <!-- Gallery item -->
-        <?php foreach($galeri as $galeri) { ?>
-        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-          <div class="bg-white rounded shadow-sm"><img src="<?php echo base_url('assets/upload/image/thumbs/'.$galeri->gambar) ?>" alt="" class="img-fluid card-img-top">
-            <div align="center" style="margin-top: 10px">
-              <h5> <a href="#" class="text-dark"><?php echo $galeri->judul_galeri; ?></a></h5>
-              <div class="divTable blueTable" style="margin-top: 20px;">
-              <div class="divTableBody">
-              <div class="divTableRow">
-              <div class="divTableCell" style="padding-left: 10px"><b>Transmisi</b></div>
-              <div class="divTableCell" style="padding-left: 10px"><?php echo $galeri->transmisi; ?></div>
-              </div>
-              <div class="divTableRow">
-                      <div class="divTableCell" style="padding-left: 10px"><b>Tahun</b></div>
-                      <div class="divTableCell" style="padding-left: 10px"><?php echo $galeri->tahun; ?></div>
-              </div>
-              <div class="divTableRow">
-                      <div class="divTableCell" style="padding-left: 10px"><b>Merk</b></div>
-                      <div class="divTableCell" style="padding-left: 10px"><?php echo $galeri->nama_merk; ?></div>
-              </div>
-              <div class="divTableRow">
-                      <div class="divTableCell" style="padding-left: 10px"><b>Kilometer</b></div>
-                      <div class="divTableCell" style="padding-left: 10px"><?php echo $galeri->nama_kilometer; ?></div>
-              </div>
-              <div class="divTableRow">
-                      <div class="divTableCell" style="padding-left: 10px"><b>Warna</b></div>
-                      <div class="divTableCell" style="padding-left: 10px"><?php echo $galeri->warna; ?></div>
-              </div>
-              <div class="divTableRow">
-                      <div class="divTableCell" style="padding-left: 10px"><b>Harga</b></div>
-                      <div class="divTableCell" style="padding-left: 10px">Rp. <?php echo number_format($galeri->harga);?></div>
-              </div>
-              </div>
-              </div>
-              <!-- <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-                <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">JPG</span></p>
-                <div class="badge badge-danger px-3 rounded-pill font-weight-normal">New</div>
-              </div> -->
+         /* make button larger and change their positions */
+         .slick-prev, .slick-next {
+             width: 50px;
+             height: 50px;
+             z-index: 1;
+         }
+         .slick-prev {
+             left: 5px;
+         }
+         .slick-next {
+             right: 5px;
+         }
+         .slick-prev:before, 
+         .slick-next:before {
+             font-size: 40px;
+             text-shadow: 0 0 10px rgba(0,0,0,0.5);
+         }
+         
+         /* move dotted nav position */
+         .slick-dots {
+             bottom: 15px;
+         }
+         /* enlarge dots and change their colors */
+         .slick-dots li button:before {
+             font-size: 12px;
+             color: #fff;
+             text-shadow: 0 0 10px rgba(0,0,0,0.5);
+             opacity: 1;
+         }
+         .slick-dots li.slick-active button:before {
+             color: #dedede;
+         }
+
+         /* hide dots and arrow buttons when slider is not hovered */
+         .slider:not(:hover) .slick-arrow,
+         .slider:not(:hover) .slick-dots {
+             opacity: 0;
+         }
+         /* transition effects for opacity */
+         .slick-arrow,
+         .slick-dots {
+             transition: opacity 0.5s ease-out;
+         }
+
+     </style>
+ </head>
+ <body>
+     <div class="container" style="margin-left:-20px">
+         <div class="slider">
+          <?php
+          foreach ($promo as $pm) {
+            ?>
+            <div>
+                <a href="#">
+                    <img src="<?php echo base_url('assets/upload/image/'.$pm->file) ?>" height="500">
+                </a>            
             </div>
-          </div>
-        </div>
-        <?php
-        }
-        ?>
-        <!-- End -->
+            <?php
+          }
+          ?>
+         </div>
+     </div>
+         
 
-       
-        <!-- End -->
+     
+     <!-- JQuery -->
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     
+     <!-- Slick JS -->    
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-      </div>
-    </div>
-  </div>
+     <!-- Our Script -->
+     <script>
+         $(document).ready(function(){
+             $('.slider').slick({
+                 autoplay: true,
+                 autoplaySpeed: 2500,
+                 dots: true
+             });
+         });
+     </script>
+
+ </body>
+ </html>
 <?php
 }else{
   ?>

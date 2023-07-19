@@ -27,6 +27,15 @@ class Galeri extends CI_Controller {
 		$this->load->view('admin/layout/wrapper', $data, FALSE);		
 	}
 
+	public function promo()	{
+		// $galeri = $this->galeri_model->listing();
+		$galeri = $this->galeri_model->listing_promo();
+		$data = array(	'title'			=> 'Promo Member',
+						'galeri'		=> $galeri,
+						'isi'			=> 'admin/galeri/list_promo');
+		$this->load->view('admin/layout/wrapper', $data, FALSE);		
+	}
+
 	public function mobil()	{
 		// $galeri = $this->galeri_model->listing();
 		$galeri = $this->galeri_model->listing_mobil();
@@ -42,6 +51,15 @@ class Galeri extends CI_Controller {
 		$data = array(	'title'			=> 'Data Mobil Jual',
 						'galeri'		=> $galeri,
 						'isi'			=> 'admin/galeri/list_mobil_jual');
+		$this->load->view('admin/layout/wrapper', $data, FALSE);		
+	}
+
+	public function mobil_pesan()	{
+		// $galeri = $this->galeri_model->listing();
+		$galeri = $this->galeri_model->listing_mobil_pesan();
+		$data = array(	'title'			=> 'Data Mobil Pesan',
+						'galeri'		=> $galeri,
+						'isi'			=> 'admin/galeri/list_mobil_pesan');
 		$this->load->view('admin/layout/wrapper', $data, FALSE);		
 	}
 
@@ -220,6 +238,109 @@ class Galeri extends CI_Controller {
 		$this->load->view('admin/layout/wrapper', $data, FALSE);		
 	}
 
+	public function tambah_promo()	{
+		$valid = $this->form_validation;
+		$valid->set_rules('gambar','Gambar','required',
+			array(	'required'	=> 'Gambar harus diisi'));
+		if($valid->run()) {
+			$fileExt = pathinfo($_FILES["gambar"]["name"], PATHINFO_EXTENSION);
+			$image = time().'16.'.$fileExt;
+			$config['upload_path']   = './assets/upload/image/';
+			$config['allowed_types'] = 'gif|jpg|png|svg|jpeg';
+      		$config['max_size']      = '12000'; // KB  
+      		$config['file_name']   		= $image;
+      		$this->load->library('upload', $config);
+      		if(! $this->upload->do_upload('gambar')) {
+		// End validasi
+      			echo "test";
+      			// $data = array(	'title'				=> 'Tambah Promo',
+      			// 	'error'    			=> $this->upload->display_errors(),
+      			// 	'isi'				=> 'admin/galeri/tambah_promo');
+      			// $this->load->view('admin/layout/wrapper', $data, FALSE);
+		// Masuk database
+      		}else{
+      		// 	$upload_data        		= array('uploads' =>$this->upload->data());
+	        // // Image Editor
+      		// 	$config['image_library']  	= 'gd2';
+      		// 	$config['source_image']   	= './assets/upload/image/'.$image; 
+      		// 	$config['new_image']     	= './assets/upload/image/thumbs/';
+      		// 	$config['create_thumb']   	= TRUE;
+      		// 	$config['quality']       	= "100%";
+      		// 	$config['maintain_ratio']   = TRUE;
+		    //     // $config['width']       		= 300; // Pixel
+		    //     $config['height']       	= 200; // Pixel
+		    //     $config['x_axis']       	= 0;
+		    //     $config['y_axis']       	= 0;
+		    //     $config['thumb_marker']   	= '';
+		    //     $this->load->library('image_lib', $config);
+		    //     $this->image_lib->resize();
+
+		    //     $i 		= $this->input;
+		    //     $tanggal = date("Y-m-d");
+		    //     $data = array(	
+		    //     	'file'			=> $image,
+		    //     	'tanggal'			=> $tanggal,
+		    //     );
+		    //     // var_dump($data);
+		    //     $this->galeri_model->tambah_promo($data);
+		    //     // $this->db->error(); 
+		    //     $this->session->set_flashdata('sukses', 'Data telah ditambah');
+		    //     redirect(base_url('admin/galeri/promo'),'refresh');
+	    	}
+	    }
+		// End masuk database
+	    $data = array(	'title'				=> 'Tambah Promo',
+	    	'isi'				=> 'admin/galeri/tambah_promo');
+	    $this->load->view('admin/layout/wrapper', $data, FALSE);		
+	}
+
+	public function simpan_promo(){
+			$fileExt = pathinfo($_FILES["gambar"]["name"], PATHINFO_EXTENSION);
+			$image = time().'16.'.$fileExt;
+			$config['upload_path']   = './assets/upload/image/';
+			$config['allowed_types'] = 'gif|jpg|png|svg|jpeg';
+      		$config['max_size']      = '12000'; // KB  
+      		$config['file_name']   		= $image;
+      		$this->load->library('upload', $config);
+      		if(! $this->upload->do_upload('gambar')) {
+		// End validasi
+      			echo "test";
+      			$data = array(	'title'				=> 'Tambah Promo',
+      				'error'    			=> $this->upload->display_errors(),
+      				'isi'				=> 'admin/galeri/tambah_promo');
+      			$this->load->view('admin/layout/wrapper', $data, FALSE);
+		// Masuk database
+      		}else{
+      			$upload_data        		= array('uploads' =>$this->upload->data());
+	        // Image Editor
+      			$config['image_library']  	= 'gd2';
+      			$config['source_image']   	= './assets/upload/image/'.$image; 
+      			$config['new_image']     	= './assets/upload/image/thumbs/';
+      			$config['create_thumb']   	= TRUE;
+      			$config['quality']       	= "100%";
+      			$config['maintain_ratio']   = TRUE;
+		        // $config['width']       		= 300; // Pixel
+		        $config['height']       	= 200; // Pixel
+		        $config['x_axis']       	= 0;
+		        $config['y_axis']       	= 0;
+		        $config['thumb_marker']   	= '';
+		        $this->load->library('image_lib', $config);
+		        $this->image_lib->resize();
+
+		        $i 		= $this->input;
+		        $tanggal = date("Y-m-d");
+		        $data = array(	
+		        	'file'			=> $image,
+		        	'tanggal'			=> $tanggal
+		        );
+		        // var_dump($data);
+		        $this->galeri_model->tambah_promo($data);
+		        // $this->db->error(); 
+		        $this->session->set_flashdata('sukses', 'Data telah ditambah');
+		        redirect(base_url('admin/galeri/promo'),'refresh');
+	    	}
+	}
+
 	// Edit galeri
 	public function edit($id_galeri)	{
 		$kategori_galeri 	= $this->kategori_galeri_model->listing();
@@ -338,6 +459,27 @@ $this->simple_login->check_login($pengalihan);
 		$this->galeri_model->delete($data);
 	    $this->session->set_flashdata('sukses', 'Data telah dihapus');
 	    redirect(base_url('admin/galeri/mobil'),'refresh');
+	}
+
+	public function delete_promo($id_promo) {
+		// Tambahkan proteksi halaman
+		$url_pengalihan = str_replace('index.php/', '', current_url());
+		$pengalihan 	= $this->session->set_userdata('pengalihan',$url_pengalihan);
+// Ambil check login dari simple_login
+		$this->simple_login->check_login($pengalihan);
+
+		$galeri = $this->galeri_model->detail_promo($id_promo);
+		// Proses hapus gambar
+		if($galeri->file=="") {
+		}else{
+			unlink('./assets/upload/image/'.$galeri->file);
+			unlink('./assets/upload/image/thumbs/'.$galeri->file);
+		}
+		// End hapus gambar
+		$data = array('id_promo'	=> $id_promo);
+		$this->galeri_model->delete_promo($data);
+		$this->session->set_flashdata('sukses', 'Data telah dihapus');
+		redirect(base_url('admin/galeri/promo'),'refresh');
 	}
 }
 

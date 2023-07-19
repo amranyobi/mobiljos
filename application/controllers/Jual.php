@@ -71,7 +71,8 @@ class Jual extends CI_Controller {
 	        				'harga'		=> $i->post('harga'),
 	        				'hp_pemilik'		=> $i->post('hp_pemilik'),
 	        				'alamat_pemilik'		=> $i->post('alamat_pemilik'),
-	        				'tipe_mobil'		=> $i->post('tipe_mobil')
+	        				'tipe_mobil'		=> $i->post('tipe_mobil'),
+	        				'username_member'		=> $i->post('username_member')
 					);
 			$simpan = $this->jual_model->tambah($data);
 			if($simpan)

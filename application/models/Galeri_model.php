@@ -37,6 +37,14 @@ class Galeri_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function listing_promo() {
+		$this->db->select('*');
+		$this->db->from('promo_member');
+		$this->db->order_by('id_promo','DESC');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	public function listing_mobil() {
 		$this->db->select('galeri.*, kategori_galeri.nama_kategori_galeri, users.nama');
 		$this->db->from('galeri');
@@ -55,6 +63,15 @@ class Galeri_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('jual');
 		$this->db->order_by('id_jual','DESC');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function listing_mobil_pesan() {
+		$this->db->select('cari.*, merk_mobil.nama_merk');
+		$this->db->from('cari');
+		$this->db->join('merk_mobil','merk_mobil.id_merk = cari.merk');
+		$this->db->order_by('id_cari','DESC');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -208,9 +225,26 @@ class Galeri_model extends CI_Model {
 		return $query->row();
 	}
 
+	public function detail_promo($id_promo) {
+		$this->db->select('*');
+		$this->db->from('promo_member');
+		$this->db->where('id_promo',$id_promo);
+		$this->db->order_by('id_promo','DESC');
+		$query = $this->db->get();
+		return $query->row();
+	}
+
 	// Tambah
 	public function tambah($data) {
 		$this->db->insert('galeri',$data);
+	}
+
+	public function tambah_promo($data) {
+		$this->db->insert('promo_member',$data);
+	}
+
+	public function tambah_cari($data) {
+		$this->db->insert('cari',$data);
 	}
 
 	// Edit
@@ -235,6 +269,11 @@ class Galeri_model extends CI_Model {
 	public function delete($data) {
 		$this->db->where('id_galeri',$data['id_galeri']);
 		$this->db->delete('galeri',$data);
+	}
+
+	public function delete_promo($data) {
+		$this->db->where('id_promo',$data['id_promo']);
+		$this->db->delete('promo_member',$data);
 	}
 }
 

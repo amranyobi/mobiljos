@@ -29,10 +29,23 @@ echo form_open_multipart(base_url('admin/spare/tambah'));
 			<input type="text" name="telp" class="form-control" placeholder="No. HP / Whatsapp" value="<?php echo set_value('telp') ?>">
 		</div>
 	</div>
-	<div class="col-md-8">
+	<div class="col-md-6">
 		<div class="form-group form-group-lg">
 			<label>Alamat</label>
 			<input type="text" name="alamat" class="form-control" placeholder="Alamat" value="<?php echo set_value('alamat') ?>">
+		</div>
+	</div>
+
+	<div class="col-md-2">
+		<div class="form-group form-group-lg">
+			<label>Bintang</label>
+			<select name="bintang" class="form-control">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
 		</div>
 	</div>
 
@@ -47,7 +60,7 @@ echo form_open_multipart(base_url('admin/spare/tambah'));
 
 		<div class="form-group">
 			<input type="submit" name="submit" class="btn btn-success btn-sm" value="Simpan Data">
-			<input type="reset" name="reset" class="btn btn-default btn-sm" value="Reset">
+			<a href="<?php echo base_url('admin/spare') ?>" class="btn btn-danger btn-sm">Batal</a>
 		</div>
 
 	</div>

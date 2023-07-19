@@ -29,11 +29,19 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-8">
 
                                     <div class="form-group">
                                         <label>Alamat Pemilik</label>
                                         <input type="text" name="alamat_pemilik" class="form-control" value="<?php echo set_value('alamat_pemilik') ?>">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4">
+
+                                    <div class="form-group">
+                                        <label>Username Member (Opsional)</label>
+                                        <input type="text" name="username_member" class="form-control" value="<?php echo set_value('username') ?>">
                                     </div>
 
                                 </div>

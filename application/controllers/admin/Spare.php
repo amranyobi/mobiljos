@@ -190,6 +190,7 @@ class Spare extends CI_Controller {
 		        				'nama_spare'		=> $i->post('nama_spare'),
 		        				'alamat'			=> $i->post('alamat'),
 		        				'telp'				=> $i->post('telp'),
+		        				'bintang'			=> $i->post('bintang'),
 		        				'file'				=> $image,
 		        				);
 		        $this->spare_model->tambah($data);

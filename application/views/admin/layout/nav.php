@@ -55,7 +55,11 @@
               </li>
               <li class="nav-item"><a href="<?php echo base_url('admin/galeri/mobil_jual') ?>" class="nav-link"><i class="fa fa-tags nav-icon"></i><p>Data Mobil Jual</p></a>
               </li>
+              <li class="nav-item"><a href="<?php echo base_url('admin/galeri/mobil_pesan') ?>" class="nav-link"><i class="fa fa-check-square-o nav-icon"></i><p>Data Mobil Pesan</p></a>
+              </li>
               <li class="nav-item"><a href="<?php echo base_url('admin/galeri') ?>" class="nav-link"><i class="fa fa-image nav-icon"></i><p>Data Banner</p></a>
+              </li>
+              <li class="nav-item"><a href="<?php echo base_url('admin/galeri/promo') ?>" class="nav-link"><i class="fa fa-bullhorn nav-icon"></i><p>Data Promo Member</p></a>
               </li>
               <li class="nav-item"><a href="<?php echo base_url('admin/spare') ?>" class="nav-link"><i class="fa fa-gear nav-icon"></i><p>Data Bengkel</p></a>
               </li>

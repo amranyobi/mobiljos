@@ -78,10 +78,10 @@
                             <?php foreach($galeri as $galeri) { ?>
                             <div class="item">
                                 <div class="item-inner">
-                                    <div class="portfolio-img">
+                                    <div style="height:200px;" class="portfolio-img">
                                         <div class="overlay-project"></div>
                                         <!-- .overlay-project -->
-                                        <img src="<?php echo base_url('assets/upload/image/thumbs/'.$galeri->file) ?>" alt="recent-project-img-1" class="img img-fluid img-thumbnail">
+                                        <img src="<?php echo base_url('assets/upload/image/thumbs/'.$galeri->file) ?>" alt="recent-project-img-1" class="img img-fluid">
                                         <div class="project-plus">
                                             <a href="<?php echo base_url('assets/upload/image/'.$galeri->file) ?>" data-rel="lightcase:myCollection"><i class="fa fa-plus" aria-hidden="true"></i></a>
                                         </div>
@@ -103,6 +103,39 @@
                                     <div class="divTableRow">
                                             <div class="divTableCell" style="padding-left: 10px"><b>Telp / WA</b></div>
                                             <div class="divTableCell" style="padding-left: 10px"><?php echo $galeri->telp; ?></div>
+                                    </div>
+                                    <div class="divTableRow">
+                                            <div class="divTableCell" style="padding-left: 10px"><b>Rating</b></div>
+                                            <div class="divTableCell" style="padding-left: 10px">
+                                                <?php
+                                                if($galeri->bintang=='1')
+                                                {
+                                                    ?>
+                                                    <img width="100"  src="<?php echo base_url('assets/images/1star.png') ?>">
+                                                    <?php
+                                                }elseif($galeri->bintang=='2')
+                                                {
+                                                    ?>
+                                                    <img width="100"  src="<?php echo base_url('assets/images/2star.png') ?>">
+                                                    <?php
+                                                }elseif($galeri->bintang=='3')
+                                                {
+                                                    ?>
+                                                    <img width="100"  src="<?php echo base_url('assets/images/3star.png') ?>">
+                                                    <?php
+                                                }elseif($galeri->bintang=='4')
+                                                {
+                                                    ?>
+                                                    <img width="100"  src="<?php echo base_url('assets/images/4star.png') ?>">
+                                                    <?php
+                                                }elseif($galeri->bintang=='5')
+                                                {
+                                                    ?>
+                                                    <img width="100" src="<?php echo base_url('assets/images/5star.png') ?>">
+                                                    <?php
+                                                }  
+                                                ?>
+                                            </div>
                                     </div>
                                     <!-- <div class="divTableRow">
                                             <div class="divTableCell" style="padding-left: 10px"><b>Merk</b></div>

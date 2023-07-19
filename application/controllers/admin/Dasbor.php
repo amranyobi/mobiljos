@@ -48,8 +48,10 @@ class Dasbor extends CI_Controller {
 			$galeri 	= $this->galeri_model->galeri($config['per_page'], $page);
 			$site 		= $this->konfigurasi_model->listing();
 			$kategori 	= $this->galeri_model->kategori();
-			$data = array(	'title'					=> 'Galeri Mobil Bekas',
+			$promo 	= $this->galeri_model->listing_promo();
+			$data = array(	'title'					=> 'Halaman Dasbor',
 							'galeri'				=> $galeri,
+							'promo'				=> $promo,
 							'isi'					=> 'admin/dasbor/list'
 						);
 			$this->load->view('admin/layout/wrapper', $data, FALSE);

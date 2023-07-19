@@ -138,6 +138,69 @@
                     <!-- .recent-project -->
                 </div>
                 <!-- .row -->
+                <div class="row" style="margin-top:40px">
+                    <div class="contact-us">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h3 class="contact-title">PESAN MOBIL</h3>
+                                <form action="<?php echo base_url('galeri/tambah_cari') ?>" method="POST" class="contact-form">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Nama Lengkap</label>
+                                            <input type="text" class="form-control" id="subjectId" name="nama" autocomplete="off" required="yes">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label>Alamat Lengkap</label>
+                                            <input type="text" class="form-control" id="subjectId" name="alamat" autocomplete="off" required="yes">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Nomor Handphone</label>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="nameId" name="handphone" autocomplete="off" required="yes">
+                                            </div>
+                                            <!-- .form-group -->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Merk</label>
+                                                <select name="merk" class="form-control">
+                                                    <?php foreach($merk as $merk) { ?>
+                                                        <option value="<?php echo $merk->id_merk ?>"><?php echo $merk->nama_merk ?></option>
+                                                    <?php } ?>
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Deskripsi</label>
+                                                <textarea name="deskripsi" class="form-control" rows="5" style="height:100%;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- .row -->
+                                    <button type="submit" class="btn btn-default">Pesan Mobil</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- .row -->
+                    </div>
+                    <!-- .contact-us -->
+                </div>
             </div>
             <!-- .container -->
         </section>
+        <!-- End Contact us Section -->
+
+
+        <!-- STart Maps Section -->
+        <style type="text/css" media="screen">
+            iframe {
+                width: 100%;
+                height: auto;
+                min-height: 400px;
+            }
+        </style>
+        <!-- <div id="map"><?php echo $site->google_map; ?></div> -->
+        <!-- End Maps Section -->
