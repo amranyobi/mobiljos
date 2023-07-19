@@ -13,9 +13,9 @@
                             <div class="row">
                                 <div class="col-md-8">
 
-                                    <div class="form-group form-group-lg">
-                                        <label>Judul Iklan</label>
-                                        <input type="text" name="judul_galeri" class="form-control" placeholder="Judul Iklan" value="<?php echo set_value('judul_galeri') ?>">
+                                    <div class="form-group">
+                                        <label>Nama Pemilik</label>
+                                        <input type="text" name="nama_pemilik" class="form-control" value="<?php echo set_value('nama_pemilik') ?>">
                                     </div>
 
                                 </div>
@@ -23,26 +23,40 @@
                                 <input name="status_text" value="Ya" type="hidden">
                                 <div class="col-md-4">
                                     <div class="form-group">
+                                        <label>No. Handphone / WA Pemilik</label>
+                                        <input type="text" name="hp_pemilik" class="form-control" value="<?php echo set_value('hp_pemilik') ?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+                                        <label>Alamat Pemilik</label>
+                                        <input type="text" name="alamat_pemilik" class="form-control" value="<?php echo set_value('alamat_pemilik') ?>">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+
+                                    <div class="form-group">
+                                        <label>Tipe Mobil</label>
+                                        <input type="text" name="tipe_mobil" class="form-control" value="<?php echo set_value('tipe_mobil') ?>">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
                                         <label>Upload gambar</label>
-                                        <input type="file" name="gambar" class="form-control" required="required" placeholder="Upload gambar">
+                                        <input type="file" name="gambar" class="form-control" required="required">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
 
                                 <input name="jenis_galeri" value="Galeri" type="hidden">
-                            <!-- <div class="col-md-4">
-                                <div class="form-group">
-                                <label>Jenis/Posisi Galeri</label>
-                                <select name="jenis_galeri" class="form-control">
-                                    <option value="Galeri">Galeri Biasa</option>
-                                    <option value="Homepage">Homepage - Gambar Slider</option>
-                                    <option value="Pop up">Pop up Homepage</option>
-                                    <option value="Testimonial">Background Testimonial</option>
-                                </select>
-
-                                </div>
-                            </div> -->
 
                             <div class="col-md-4">
                                 <input name="id_kategori_galeri" value="4" type="hidden">
@@ -121,7 +135,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Harga</label>
-                                    <input name="harga" type="text" class="form-control" placeholder="Tanpa koma/titik">
+                                    <input name="harga" type="text" class="form-control" placeholder=" Tanpa koma/titik">
                                 </div>
                             </div>
                         </div>

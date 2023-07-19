@@ -60,7 +60,7 @@ class Jual extends CI_Controller {
 	        $this->image_lib->resize();
 	        $i 		= $this->input;
 			$data = array(
-	        				'judul_jual'		=> $i->post('judul_jual'),
+	        				'nama_pemilik'		=> $i->post('nama_pemilik'),
 	        				'isi'				=> $i->post('isi'),
 	        				'gambar'			=> $image,
 	        				'transmisi'		=> $i->post('transmisi'),
@@ -68,7 +68,10 @@ class Jual extends CI_Controller {
 	        				'kilometer'		=> $i->post('kilometer'),
 	        				'tahun'		=> $i->post('tahun'),
 	        				'warna'		=> $i->post('warna'),
-	        				'harga'		=> $i->post('harga')
+	        				'harga'		=> $i->post('harga'),
+	        				'hp_pemilik'		=> $i->post('hp_pemilik'),
+	        				'alamat_pemilik'		=> $i->post('alamat_pemilik'),
+	        				'tipe_mobil'		=> $i->post('tipe_mobil')
 					);
 			$simpan = $this->jual_model->tambah($data);
 			if($simpan)

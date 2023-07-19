@@ -51,6 +51,14 @@ class Galeri_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function listing_mobil_jual() {
+		$this->db->select('*');
+		$this->db->from('jual');
+		$this->db->order_by('id_jual','DESC');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	// Listing data slider
 	public function slider() {
 		$this->db->select('galeri.*, kategori_galeri.nama_kategori_galeri, users.nama');

@@ -36,6 +36,15 @@ class Galeri extends CI_Controller {
 		$this->load->view('admin/layout/wrapper', $data, FALSE);		
 	}
 
+	public function mobil_jual()	{
+		// $galeri = $this->galeri_model->listing();
+		$galeri = $this->galeri_model->listing_mobil_jual();
+		$data = array(	'title'			=> 'Data Mobil Jual',
+						'galeri'		=> $galeri,
+						'isi'			=> 'admin/galeri/list_mobil_jual');
+		$this->load->view('admin/layout/wrapper', $data, FALSE);		
+	}
+
 	// Proses
 	public function proses()
 	{
