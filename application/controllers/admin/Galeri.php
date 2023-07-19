@@ -179,8 +179,8 @@ class Galeri extends CI_Controller {
 	        $config['create_thumb']   	= TRUE;
 	        $config['quality']       	= "100%";
 	        $config['maintain_ratio']   = TRUE;
-	        $config['width']       		= 500; // Pixel
-	        $config['height']       	= 500; // Pixel
+	        // $config['width']       		= 300; // Pixel
+	        $config['height']       	= 200; // Pixel
 	        $config['x_axis']       	= 0;
 	        $config['y_axis']       	= 0;
 	        $config['thumb_marker']   	= '';
@@ -337,7 +337,7 @@ $this->simple_login->check_login($pengalihan);
 		$data = array('id_galeri'	=> $id_galeri);
 		$this->galeri_model->delete($data);
 	    $this->session->set_flashdata('sukses', 'Data telah dihapus');
-	    redirect(base_url('admin/galeri'),'refresh');
+	    redirect(base_url('admin/galeri/mobil'),'refresh');
 	}
 }
 

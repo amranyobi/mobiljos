@@ -1,3 +1,6 @@
+<?php
+$site = $this->konfigurasi_model->listing();
+?>
 <style type="text/css">
     div.blueTable {
       border: 1px solid #1C6EA4;
@@ -92,7 +95,7 @@
                                         <!-- .latest-port-content -->
                                     </div>
                                     <div style="margin-top: 10px">
-                                        <?php echo $galeri->judul_newcar; ?>
+                                       <a href="https://wa.me/<?php echo str_replace('+','',$site->hp) ?>?text=Saya%20tertarik%20untuk%20Menggunakan%20Layanan%20di%20Perusahan%20Anda.%20Apakah%20bisa%20dibantu?"><?php echo $galeri->judul_newcar; ?></a>
                                     </div>
                                     <!-- <div class="divTable blueTable" style="margin-top: 20px;">
                                     <div class="divTableBody">
@@ -137,6 +140,7 @@
                     </div>
                     <!-- .recent-project -->
                 </div>
+                <font size="2"><b>Ket :</b> Klik gambar untuk melihat poster lebih jelas, Klik judul untuk menghubungi Sales Marketing kami.</font>
                 <!-- .row -->
             </div>
             <!-- .container -->

@@ -10,10 +10,10 @@ echo form_open(base_url('admin/galeri/proses'));
 <p class="btn-group">
   <a href="<?php echo base_url('admin/galeri/tambah_mobil') ?>" class="btn btn-success">
   <i class="fa fa-plus"></i> Tambah Mobil</a>&nbsp;
-
+<!-- 
   <button class="btn btn-danger" type="submit" name="hapus" onClick="check();" >
       <i class="fa fa-trash-o"></i> Hapus
-    </button> 
+    </button>  -->
 
 </p>
 
@@ -22,13 +22,13 @@ echo form_open(base_url('admin/galeri/proses'));
 <table id="example1" class="display table table-bordered table-hover" cellspacing="0" width="100%">
 <thead>
 <tr>
-    <th>
-        <div class="mailbox-controls">
+    <!-- <th>
+        <div class="mailbox-controls"> -->
             <!-- Check all button -->
-            <button type="button" class="btn btn-default btn-xs checkbox-toggle"><i class="fa fa-square-o"></i>
-            </button>
-        </div>
-    </th>
+            <!-- <button type="button" class="btn btn-default btn-xs checkbox-toggle"><i class="fa fa-square-o"></i>
+            </button> -->
+        <!-- </div>
+    </th> -->
     <th>Gambar</th>
     <th>Tipe Mobil</th>
     <th>Transmisi</th>
@@ -43,12 +43,12 @@ echo form_open(base_url('admin/galeri/proses'));
 <?php $i=1; foreach($galeri as $galeri) { ?>
 
 <tr class="odd gradeX">
-    <td>
+<!--     <td>
       <div class="mailbox-star text-center"><div class="text-center">
         <input type="checkbox" class="icheckbox_flat-blue " name="id_galeri[]" value="<?php echo $galeri->id_galeri ?>">
         <span class="checkmark"></span>
       </div>
-    </td>
+    </td> -->
     <td>
       <img src="<?php echo base_url('assets/upload/image/thumbs/'.$galeri->gambar) ?>" width="60">
     </td>
