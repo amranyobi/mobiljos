@@ -42,6 +42,49 @@ class Galeri extends CI_Controller {
 		$this->load->view('layout/wrapper', $data, FALSE);
 	}
 
+	public function sort($jenis,$by = null)	{
+		$site 		= $this->konfigurasi_model->listing();
+		$kategori 	= $this->galeri_model->kategori();
+		$merk = $this->kategori_galeri_model->merk();
+
+		// Galeri dan paginasi
+		$this->load->library('pagination');
+		$config['base_url'] 		= base_url().'galeri/index/';
+		$config['total_rows'] 		= count($this->galeri_model->total_galeri());
+		$config['use_page_numbers'] = TRUE;
+		$config['num_links'] 		= 5;
+		$config['uri_segment'] 		= 3;
+		$config['per_page'] 		= 12;
+		$config['first_url'] 		= base_url().'galeri/';
+		$this->pagination->initialize($config); 
+		// $page 		= ($this->uri->segment(3)) ? ($this->uri->segment(3) - 1) * $config['per_page'] : 0;
+		$page = 1;
+		if(empty($by)){
+			$by = 'ASC';
+			$by_next = 'DESC';
+		}else{
+			if($by=='ASC')
+				$by_next = 'DESC';
+			else
+				$by_next = 'ASC';
+		}
+		$galeri 	= $this->galeri_model->galeri_sort($jenis, $by);
+		// End paginasi
+
+		$data = array(	'title'		=> 'Galeri Mobil Bekas - '.$site->namaweb,
+						'deskripsi'	=> 'Galeri Mobil Bekas - '.$site->namaweb,
+						'keywords'	=> 'Galeri Mobil Bekas - '.$site->namaweb,
+						'pagin' 	=> $this->pagination->create_links(),
+						'galeri'	=> $galeri,
+						'kategori'	=> $kategori,
+						'merk'		=> $merk,
+						'by_next'		=> $by_next,
+						'by'		=> $by,
+						'jenis'		=> $jenis,
+						'isi'		=> 'galeri/list');
+		$this->load->view('layout/wrapper', $data, FALSE);
+	}
+
 	public function tambah_cari() {
 		   // Nambah agenda, check validasi
 			$tanggal = date("Y-m-d");

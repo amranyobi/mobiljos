@@ -154,6 +154,23 @@ class Galeri_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function galeri_sort($jenis,$by) {
+		$this->db->select('galeri.*, kategori_galeri.nama_kategori_galeri, users.nama, 
+						kategori_galeri.slug_kategori_galeri, kilometer.nama_kilometer, merk_mobil.nama_merk');
+		$this->db->from('galeri');
+		// Join dg 2 tabel
+		$this->db->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
+		$this->db->join('users','users.id_user = galeri.id_user','LEFT');
+		$this->db->join('merk_mobil','merk_mobil.id_merk = galeri.merk','LEFT');
+		$this->db->join('kilometer','kilometer.id_kilometer = galeri.kilometer','LEFT');
+		// End join
+		$this->db->where('jenis_galeri','Galeri');
+		$this->db->order_by($jenis,$by);
+		// $this->db->limit($limit,$start);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	// Listing data slider
 	public function total_galeri() {
 		$this->db->select('galeri.*, kategori_galeri.nama_kategori_galeri, users.nama');
