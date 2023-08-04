@@ -98,8 +98,12 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                             if(isset($jenis))
                                 echo $jenis;
                             if(isset($by)){
+                                if($by=='ASC')
+                                    $kata = "Terkecil";
+                                else
+                                    $kata = "Terbesar";
                                 echo " (";
-                                echo $by;
+                                echo $kata;
                                 echo ")";
                             }
                             ?>
