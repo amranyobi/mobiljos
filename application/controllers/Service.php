@@ -126,6 +126,43 @@ class Service extends CI_Controller {
 						'isi'		=> 'galeri/read');
 		$this->load->view('layout/wrapper', $data, FALSE);
 	}
+
+	public function tambah_booking() {
+		   // Nambah agenda, check validasi
+			// $tanggal = date("Y-m-d");
+	        $i 		= $this->input;
+	        $waktu = $i->post('jam').":".$i->post('menit').":00";
+	        $data = array(
+	        	'nama'		=> $i->post('nama'),
+	        	'alamat'	=> $i->post('alamat'),
+	        	'handphone'		=> $i->post('handphone'),
+	        	'bengkel'		=> $i->post('bengkel'),
+	        	'jam'		=> $waktu,
+	        	'tanggal'		=> $i->post('tanggal')
+	        );
+	        $simpan = $this->spare_model->tambah_booking($data);
+	        if($simpan)
+	        {
+	        	$this->session->set_flashdata('sukses','Tambah Booking Berhasil');
+	        	redirect(base_url().'service/berhasil/1');
+	        }else{
+				// echo "test";
+	        	$this->session->set_flashdata('sukses','Tambah Booking Berhasil');
+	        	redirect(base_url().'service/berhasil/1');
+	        }
+	}
+
+	public function berhasil($tipe){
+		$site 			= $this->konfigurasi_model->listing();
+		$data = array(	'title'		=> 'Pesan Mobil '.$site->namaweb.' | '.$site->tagline,
+						'deskripsi'	=> 'Pesan Mobil '.$site->namaweb.' | '.$site->tagline.' '.$site->tentang,
+						'keywords'	=> 'Pesan Mobil '.$site->namaweb.' | '.$site->tagline.' '.$site->keywords,
+						'site'		=> $site,
+						'tipe'		=> $tipe,
+						'isi'		=> 'spare/berhasil');
+		$this->load->view('layout/wrapper', $data, FALSE);
+
+	}
 }
 
 /* End of file Galeri.php */

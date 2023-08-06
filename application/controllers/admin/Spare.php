@@ -28,6 +28,15 @@ class Spare extends CI_Controller {
 		$this->load->view('admin/layout/wrapper', $data, FALSE);		
 	}
 
+	public function booking()	{
+		// $galeri = $this->galeri_model->listing();
+		$spare = $this->spare_model->listing_booking();
+		$data = array(	'title'			=> 'Data Booking Bengkel & Sparepart',
+						'spare'		=> $spare,
+						'isi'			=> 'admin/spare/list_booking');
+		$this->load->view('admin/layout/wrapper', $data, FALSE);		
+	}
+
 	public function konfirmasi_admin()	{
 		// $galeri = $this->galeri_model->listing();
 		$konfirmasi_admin = $this->lelang_model->konfirmasi_admin();

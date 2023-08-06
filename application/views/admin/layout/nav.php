@@ -62,6 +62,7 @@
               <li class="nav-item"><a href="<?php echo base_url('admin/galeri/promo') ?>" class="nav-link"><i class="fa fa-bullhorn nav-icon"></i><p>Data Promo Member</p></a>
               </li>
               <li class="nav-item"><a href="<?php echo base_url('admin/spare') ?>" class="nav-link"><i class="fa fa-gear nav-icon"></i><p>Data Bengkel</p></a>
+              <li class="nav-item"><a href="<?php echo base_url('admin/spare/booking') ?>" class="nav-link"><i class="fa fa-book nav-icon"></i><p>Data Booking</p></a>
               </li>
               <li class="nav-item"><a href="<?php echo base_url('admin/newcar') ?>" class="nav-link"><i class="fa fa-tachometer nav-icon"></i><p>Data Newcar</p></a>
               </li>

@@ -162,6 +162,76 @@
                             <?php } ?>
                             <!-- .items -->
                         </div>
+
+                        <div class="row" style="margin-top:40px">
+                            <div class="contact-us">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h3 class="contact-title">BOOKING</h3>
+                                        <form action="<?php echo base_url('service/tambah_booking') ?>" method="POST" class="contact-form">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Nama Lengkap</label>
+                                                    <input type="text" class="form-control" id="subjectId" name="nama" autocomplete="off" required="yes">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Nomor Handphone</label>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="nameId" name="handphone" autocomplete="off" required="yes">
+                                                    </div>
+                                                    <!-- .form-group -->
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label>Alamat Lengkap</label>
+                                                    <input type="text" class="form-control" id="subjectId" name="alamat" autocomplete="off" required="yes">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Nama Bengkel</label>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="nameId" name="bengkel" autocomplete="off" required="yes">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Tanggal</label>
+                                                    <div class="form-group">
+                                                        <input type="date" class="form-control" id="nameId" name="tanggal" autocomplete="off" required="yes">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Jam Booking</label>
+                                                    <div class="form-group">
+                                                        <select name="jam">
+                                                            <?php
+                                                            for($x=1;$x<=23;$x++)
+                                                            {
+                                                                ?>
+                                                                <option value="<?php echo sprintf("%02d", $x)?>"><?php echo sprintf("%02d", $x)?></option>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                        <select name="menit">
+                                                            <?php
+                                                            for($y=1;$y<=59;$y++)
+                                                            {
+                                                                ?>
+                                                                <option value="<?php echo sprintf("%02d", $y)?>"><?php echo sprintf("%02d", $y)?></option>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- .row -->
+                                            <button type="submit" class="btn btn-default">Pesan Mobil</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- .row -->
+                            </div>
+                            <!-- .contact-us -->
+                        </div>
                         <!-- .isotope-items -->
                         <div class="load-more-option">
                             <?php if(isset($pagin)) { echo $pagin; }  ?>

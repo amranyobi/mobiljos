@@ -18,6 +18,14 @@ class Spare_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function listing_booking() {
+		$this->db->select('*');
+		$this->db->from('booking');
+		$this->db->order_by('tanggal','DESC');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	public function konfirmasi_admin() {
 		$this->db->select('konfirmasi_bayar.*, users.nama, voucher_lelang.total_bayar, voucher_lelang.tanggal_beli');
 		$this->db->from('konfirmasi_bayar');
@@ -279,6 +287,10 @@ class Spare_model extends CI_Model {
 	// Tambah
 	public function tambah($data) {
 		$this->db->insert('spare',$data);
+	}
+
+	public function tambah_booking($data) {
+		$this->db->insert('booking',$data);
 	}
 
 	public function simpan_beli($data) {
