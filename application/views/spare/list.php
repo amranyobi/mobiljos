@@ -224,7 +224,7 @@
                                                 </div>
                                             </div>
                                             <!-- .row -->
-                                            <button type="submit" class="btn btn-default">Pesan Mobil</button>
+                                            <button type="submit" class="btn btn-default">Booking Service</button>
                                         </form>
                                     </div>
                                 </div>
